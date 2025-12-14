@@ -4,27 +4,247 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/* Physical AI Book Theme - You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #9b5673ff; /* Google blue for a tech/robotics feel */
+  --ifm-color-primary-dark: #1557b0;
+  --ifm-color-primary-darker: #134da3;
+  --ifm-color-primary-darkest: #0f3d85;
+  --ifm-color-primary-light: #4285f4;
+  --ifm-color-primary-lighter: #5e97f6;
+  --ifm-color-primary-lightest: #8ab8ff;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(26, 115, 232, 0.15);
+
+  /* Additional Physical AI colors */
+  --physical-ai-accent: #0d9c29; /* Green for success/positive feedback */
+  --physical-ai-warning: #f4b400; /* Yellow for warnings */
+  --physical-ai-error: #d93025; /* Red for errors */
+  --physical-ai-background: #f9faf8ff; /* Light gray background */
+  
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #8ab8ff;
+  --ifm-color-primary-dark: #5e97f6;
+  --ifm-color-primary-darker: #4285f4;
+  --ifm-color-primary-darkest: #1a73e8;
+  --ifm-color-primary-light: #a6cbff;
+  --ifm-color-primary-lighter: #c2ddff;
+  --ifm-color-primary-lightest: #deefff;
+  --docusaurus-highlighted-code-line-bg: rgba(26, 115, 232, 0.3);
+
+  /* Dark mode Physical AI colors */
+  --physical-ai-accent: #4cbb5f;
+  --physical-ai-warning: #f9c240;
+  --physical-ai-error: #e9584e;
+  --physical-ai-background: #1e1e1e; /* Dark background */
+}
+
+/* Custom styles for Physical AI book */
+
+/* Exercise callout boxes */
+.exercise-box {
+  border-left: 4px solid var(--physical-ai-accent);
+  background-color: rgba(76, 187, 95, 0.05);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.exercise-title {
+  font-weight: bold;
+  color: var(--physical-ai-accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Code block enhancements */
+.code-block-exercise {
+  border-left: 3px solid var(--physical-ai-accent);
+}
+
+/* Difficulty indicators */
+.difficulty-beginner {
+  background-color: rgba(76, 187, 95, 0.2);
+  color: var(--physical-ai-accent);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+.difficulty-intermediate {
+  background-color: rgba(244, 176, 0, 0.2);
+  color: var(--physical-ai-warning);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+.difficulty-advanced {
+  background-color: rgba(217, 48, 37, 0.2);
+  color: var(--physical-ai-error);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+/* Learning objectives styling */
+.learning-objectives {
+  background-color: var(--ifm-color-emphasis-100);
+  border-left: 4px solid var(--ifm-color-primary);
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.learning-objectives ul {
+  margin-bottom: 0;
+}
+
+/* Summary box styling */
+.summary-box {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  background-color: var(--ifm-color-emphasis-0);
+}
+.navbar__items .navbar__link {
+  position: relative;           /* pseudo-element ke liye required */
+  transition: transform 0.2s ease; /* zoom effect */
+}
+
+.navbar__items .navbar__link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: currentColor;  /* current text color ka underline */
+  transition: width 0.3s ease;
+}
+
+
+/* yahan se manually css apply ki ha  */
+.navbar__items .navbar__link:hover::after {
+  width: 100%;
+}
+
+/* Optional: slight zoom on hover */
+.navbar__items .navbar__link:hover {
+  transform: scale(1.05);
+}
+
+/* All headings in main content */
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  color: #e88f1aff;                 /* default heading color */
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover animation with color change */
+.markdown h1:hover,
+.markdown h2:hover,
+.markdown h3:hover,
+.markdown h4:hover,
+.markdown h5:hover,
+.markdown h6:hover {
+  color: #0f3d85;                 /* color on hover */
+  transform: scale(1.05);         /* slight zoom effect */
+}
+
+
+/* Hero section heading text color */
+.hero__title {
+  color: #195977ff; /* Heading ka naya color */
+  transition: color 0.3s ease;
+}
+
+.hero__title:hover {
+  color: #cdb632ff; /* Hover color for heading */
+}
+
+/* Hero section buttons */
+.hero .button,
+.hero .button--primary {
+  color: #8f6353ff; /* Button text color */
+  background-color: #f0f0f0ff; /* Optional button background */
+  border: 1px solid #bd8652ff;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for hero buttons */
+.hero .button:hover,
+.hero .button--primary:hover {
+  color: #ffffffff; /* Text color on hover */
+  background-color: #477fc7ff; /* Background on hover */
+  transform: scale(1.05); /* Thoda zoom effect */
+}
+
+/* Hero section subheading / description text */
+.hero__subtitle {
+  color: #579693ff; /* naya text color */
+  transition: color 0.3s ease; /* smooth hover effect */
+}
+
+/* Hover effect for subheading */
+.hero__subtitle:hover {
+  color: #ccc4c0ff; /* hover color */
+  text-decoration: underline; /* optional underline on hover */
+}
+
+
+:root {
+  --ifm-navbar-background-color: #e1ebeeff; /* dark blue / apni pasand ka color */
+}
+
+.navbar__link {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar__link:hover {
+  color: #38bdf8;       /* hover par color */
+  transform: translateY(-2px);
+}
+
+img {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+img:hover {
+  transform: scale(1.08) translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.features h3 {
+  color: #0f172a;   /* apna color */
+}
+
+.col.col--4 h3 {
+  color: #2563eb !important;
+}
+
+.col.col--4 p {
+  color: #475569 !important;
+}
+
+.col.col--4 h3 {
+  color: #2563eb;                    /* default color */
+  text-decoration-line: underline;   /* underline */
+  text-decoration-color: #793c3cff;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transition: color 0.3s ease, transform 0.3s ease; /* smooth hover */
+  cursor: pointer;                   /* pointer on hover */
+}
+
+.col.col--4 h3:hover {
+  color: #5a4834ff;                    /* hover color */
+  transform: translateY(-2px);       /* small lift animation */
 }

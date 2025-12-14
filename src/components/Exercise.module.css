@@ -1,0 +1,72 @@
+.exerciseContainer {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border-radius: 0.25rem;
+  border-left: 4px solid var(--physical-ai-accent);
+  background-color: rgba(76, 187, 95, 0.05);
+}
+
+.exerciseTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: var(--physical-ai-accent);
+}
+
+.exerciseContent {
+  margin: 1rem 0;
+}
+
+.hintsSection,
+.solutionSection {
+  margin-top: 1rem;
+}
+
+.hintButton,
+.solutionButton {
+  margin-bottom: 0.5rem;
+}
+
+.hintsContent,
+.solutionContent {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background-color: var(--ifm-color-emphasis-100);
+  border-radius: 0.25rem;
+}
+
+.solutionContent {
+  background-color: var(--ifm-color-emphasis-0);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.difficultyBeginner {
+  background-color: rgba(76, 187, 95, 0.2);
+  color: var(--physical-ai-accent);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+.difficultyIntermediate {
+  background-color: rgba(244, 176, 0, 0.2);
+  color: var(--physical-ai-warning);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+.difficultyAdvanced {
+  background-color: rgba(217, 48, 37, 0.2);
+  color: var(--physical-ai-error);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+
+
+
+

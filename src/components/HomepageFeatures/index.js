@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 const FeatureList = [
   {
     title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+   Svg: () => <img src="/img/images.jpeg" alt="Easy to Use" className={styles.featureImage} />,
     description: (
       <>
         Docusaurus was designed from the ground up to be easily installed and
@@ -15,7 +15,9 @@ const FeatureList = [
   },
   {
     title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+   Svg: () => <img src="/img/rob2.jpg" alt="Easy to Use" className={styles.featureImage} 
+   style={{ width: 354, height:158}}// width bada, height choti
+/>,
     description: (
       <>
         Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
@@ -25,7 +27,9 @@ const FeatureList = [
   },
   {
     title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: () => <img src="/img/rr.png" className={styles.featureImage}
+ style={{ width: 100,eight:158}}// width bada, height choti
+ />,
     description: (
       <>
         Extend or customize your website layout by reusing React. Docusaurus can
@@ -48,6 +52,8 @@ function Feature({Svg, title, description}) {
     </div>
   );
 }
+
+
 
 export default function HomepageFeatures() {
   return (

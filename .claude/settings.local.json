@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch --all --prune)",
+      "Bash(node .specify/scripts/powershell/create-new-feature.js \"Title – concise and descriptive.\n\nLearning Objectives – 2–4 measurable outcomes.\n\nContent Outline – step-by-step breakdown of topics, examples, and hands-on exercises.\n\nCode or Experiment Section – practical activity or demo aligned with the topic.\n\nReferences & Resources – links or pointers for further reading.\n\nThe specification should also cover:\n\nChapter Title and overview.\n\nNavigation structure suitable for Docusaurus docs (sidebar, headings).\n\nFormatting guidelines (headings, code blocks, images, callouts).\n\nConsistency rules for tone, style, and hands-on learning focus.\" --number 1 --short-name \"physical-ai-chapter-spec\")",
+      "Bash(node .specify/scripts/powershell/setup-plan.js)",
+      "Bash(git rev-parse --git-dir)",
+      "Bash(node .specify/scripts/powershell/check-prerequisites.js)",
+      "Bash(npm run build)",
+      "Bash(timeout 30 tail -f /tmp/claude/tasks/b9addea.output)",
+      "Bash(npx docusaurus build)",
+      "Bash(npx docusaurus serve)"
+    ]
+  }
+}

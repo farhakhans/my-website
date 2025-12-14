@@ -1,0 +1,376 @@
+openapi: 3.0.0
+info:
+  title: Physical AI Book Content API
+  description: API for accessing content metadata and progress tracking for the Physical AI book
+  version: 1.0.0
+servers:
+  - url: https://api.physicalai-book.com/v1
+    description: Production server
+  - url: https://staging.physicalai-book.com/v1
+    description: Staging server
+
+paths:
+  /chapters:
+    get:
+      summary: Get all chapters
+      description: Retrieve a list of all available chapters with metadata
+      responses:
+        '200':
+          description: A list of chapters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chapters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Chapter'
+        '500':
+          description: Internal server error
+
+  /chapters/{chapterId}:
+    get:
+      summary: Get a specific chapter
+      description: Retrieve a specific chapter by its ID
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the chapter
+      responses:
+        '200':
+          description: Chapter details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+        '404':
+          description: Chapter not found
+        '500':
+          description: Internal server error
+
+  /exercises/{chapterId}:
+    get:
+      summary: Get exercises for a chapter
+      description: Retrieve all exercises for a specific chapter
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the chapter
+      responses:
+        '200':
+          description: List of exercises for the chapter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  exercises:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Exercise'
+        '404':
+          description: Chapter not found
+        '500':
+          description: Internal server error
+
+  /resources/{chapterId}:
+    get:
+      summary: Get resources for a chapter
+      description: Retrieve all resources for a specific chapter
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier for the chapter
+      responses:
+        '200':
+          description: List of resources for the chapter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  resources:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Resource'
+        '404':
+          description: Chapter not found
+        '500':
+          description: Internal server error
+
+  /progress:
+    post:
+      summary: Save user progress
+      description: Save the user's progress for a specific chapter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProgress'
+      responses:
+        '200':
+          description: Progress saved successfully
+        '400':
+          description: Invalid progress data
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    Chapter:
+      type: object
+      required:
+        - id
+        - title
+        - overview
+        - learningObjectives
+        - difficulty
+        - estimatedTime
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+          example: "introduction-to-physical-ai"
+        title:
+          type: string
+          description: Display title of the chapter
+          example: "Introduction to Physical AI"
+        overview:
+          type: string
+          description: Brief description of the chapter content
+          example: "An overview of Physical AI concepts and applications"
+        learningObjectives:
+          type: array
+          items:
+            type: string
+          description: List of 2-4 measurable learning outcomes
+          example: ["Define Physical AI and its applications", "Identify key components of Physical AI systems"]
+        contentOutline:
+          type: array
+          items:
+            $ref: '#/components/schemas/Topic'
+          description: Structured breakdown of topics in the chapter
+        handsOnExercises:
+          type: array
+          items:
+            $ref: '#/components/schemas/Exercise'
+          description: List of hands-on exercises in the chapter
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+          description: List of resources for further learning
+        prerequisites:
+          type: array
+          items:
+            type: string
+          description: List of chapter IDs that should be completed first
+          example: ["math-fundamentals", "programming-basics"]
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: Difficulty level of the chapter
+          example: "beginner"
+        estimatedTime:
+          type: number
+          description: Estimated time to complete the chapter in minutes
+          example: 45
+
+    Topic:
+      type: object
+      required:
+        - id
+        - title
+        - content
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the topic within the chapter
+          example: "sensor-fundamentals"
+        title:
+          type: string
+          description: Title of the topic
+          example: "Sensor Fundamentals"
+        content:
+          type: string
+          description: Main content of the topic in MDX format
+          example: "# Sensor Fundamentals\n\nSensors are crucial components in Physical AI..."
+        examples:
+          type: array
+          items:
+            $ref: '#/components/schemas/Example'
+          description: List of examples in the topic
+        exercises:
+          type: array
+          items:
+            type: string
+          description: List of exercise IDs related to this topic
+          example: ["exercise-1", "exercise-2"]
+
+    Exercise:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - difficulty
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the exercise within the chapter
+          example: "exercise-distance-sensor"
+        title:
+          type: string
+          description: Title of the exercise
+          example: "Distance Sensor Simulation"
+        description:
+          type: string
+          description: Detailed description of the exercise
+          example: "Implement a simulation of a distance sensor that detects objects in 2D space"
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: Difficulty level of the exercise
+          example: "beginner"
+        codeExample:
+          type: string
+          description: Executable code example for the exercise
+          example: "def simulate_distance_sensor(target_x, target_y, noise_level=0.1):\n    # Implementation here\n    pass"
+        expectedOutcome:
+          type: string
+          description: What the reader should achieve
+          example: "A working distance sensor simulation with configurable noise"
+        hints:
+          type: array
+          items:
+            type: string
+          description: Helpful tips for completing the exercise
+          example: ["Consider using the Euclidean distance formula", "Add random noise to simulate real sensor inaccuracies"]
+        solution:
+          type: string
+          description: Complete solution for reference (may be hidden by default)
+          example: "import random\n\ndef simulate_distance_sensor(target_x, target_y, noise_level=0.1):\n    # Calculate distance with noise\n    distance = ((target_x**2 + target_y**2)**0.5) * (1 + random.uniform(-noise_level, noise_level))\n    return distance"
+
+    Resource:
+      type: object
+      required:
+        - id
+        - title
+        - url
+        - type
+        - description
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the resource
+          example: "resource-ros-tutorial"
+        title:
+          type: string
+          description: Title of the resource
+          example: "ROS Robotics Operating System Tutorial"
+        url:
+          type: string
+          format: uri
+          description: URL to the resource
+          example: "https://docs.ros.org/en/rolling/Tutorials.html"
+        type:
+          type: string
+          enum: [tutorial, paper, tool, reference, video, code-sample]
+          description: Type of resource
+          example: "tutorial"
+        description:
+          type: string
+          description: Brief description of the resource
+          example: "Official ROS tutorial for getting started with robotics development"
+        relevance:
+          type: string
+          description: How this resource relates to the chapter content
+          example: "Provides practical tools for implementing Physical AI systems"
+
+    Example:
+      type: object
+      required:
+        - id
+        - title
+        - code
+        - language
+        - expectedOutput
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the example within the topic
+          example: "example-distance-calc"
+        title:
+          type: string
+          description: Title of the example
+          example: "Distance Calculation Example"
+        description:
+          type: string
+          description: Brief explanation of what the example demonstrates
+          example: "Calculate distance between two points in 2D space"
+        code:
+          type: string
+          description: Executable code in appropriate language
+          example: "def calculate_distance(x1, y1, x2, y2):\n    return ((x2-x1)**2 + (y2-y1)**2)**0.5"
+        language:
+          type: string
+          enum: [python, javascript, cpp, other]
+          description: Programming language of the code
+          example: "python"
+        expectedOutput:
+          type: string
+          description: What output or behavior to expect
+          example: "Returns the Euclidean distance between two points"
+        explanation:
+          type: string
+          description: Detailed explanation of the code
+          example: "This function implements the Euclidean distance formula to calculate the straight-line distance between two points in 2D space."
+
+    UserProgress:
+      type: object
+      required:
+        - userId
+        - chapterId
+        - completedTopics
+        - completedExercises
+      properties:
+        userId:
+          type: string
+          description: Anonymous identifier for tracking progress
+          example: "user-12345"
+        chapterId:
+          type: string
+          description: Chapter being tracked
+          example: "introduction-to-physical-ai"
+        completedTopics:
+          type: array
+          items:
+            type: string
+          description: List of topic IDs completed by the user
+          example: ["topic-intro", "topic-sensors"]
+        completedExercises:
+          type: array
+          items:
+            type: string
+          description: List of exercise IDs completed by the user
+          example: ["exercise-1", "exercise-2"]
+        timeSpent:
+          type: number
+          description: Time spent on this chapter in minutes
+          example: 35
+        lastAccessed:
+          type: string
+          format: date-time
+          description: When the user last accessed this content
+          example: "2025-12-12T10:30:00Z"
