@@ -118,8 +118,8 @@ const config = {
          {
 
             
-    href: 'https://vercel.com/my-website.vercel.app/',
-    label: 'my-website',
+    href: 'https://my-website.vercel.app/',
+    label: 'live site',
     position: 'right',
   },
 ],
