@@ -44,8 +44,12 @@ const config = {
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
+      
       ({
+
+       
         docs: {
+          
           sidebarPath: './sidebars.js',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -68,7 +72,7 @@ const config = {
           onUntruncatedBlogPosts: 'warn',
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: require.resolve( './src/css/custom.css'),
         },
       }),
     ],
@@ -97,14 +101,25 @@ const config = {
           },
           {to: '/blog', label: 'Resources', position: 'left'},
           {
-            href: 'https://github.com/physical-ai-book/physical-ai-book',
+            href: 'https://github.com/farhakhans/my-website',
             label: 'GitHub',
             position: 'right',
           },
 
           {
+
+            
     href: 'https://my-portfolio-d5rg.vercel.app/',
     label: 'my-portfolio',
+    position: 'right',
+  },
+
+
+         {
+
+            
+    href: 'https://vercel.com/farhakhans-project',
+    label: 'vercel',
     position: 'right',
   },
 ],
