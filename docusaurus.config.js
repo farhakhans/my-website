@@ -101,7 +101,7 @@ const config = {
           },
           {to: '/blog', label: 'Resources', position: 'left'},
           {
-            href: 'https://github.com/farhakhans/my-website',
+            url: 'https://github.com/farhakhans/my-website',
             label: 'GitHub',
             position: 'right',
           },
@@ -109,7 +109,7 @@ const config = {
           {
 
             
-    href: 'https://my-portfolio-d5rg.vercel.app/',
+    url: 'https://my-portfolio-d5rg.vercel.app/',
     label: 'my-portfolio',
     position: 'right',
   },
@@ -118,7 +118,7 @@ const config = {
          {
 
             
-    href: 'https://vercel.com/farhakhans-project',
+    url: 'https://vercel.com/farhakhans-project',
     label: 'vercel',
     position: 'right',
   },
@@ -145,15 +145,15 @@ const config = {
             items: [
               {
                 label: 'Physical AI Community',
-                href: 'https://example.com/physical-ai-community',
+                url: 'https://example.com/physical-ai-community',
               },
               {
                 label: 'Research Papers',
-                href: 'https://example.com/physical-ai-papers',
+                url: 'https://example.com/physical-ai-papers',
               },
               {
                 label: 'Tools & Libraries',
-                href: 'https://example.com/physical-ai-tools',
+                url: 'https://example.com/physical-ai-tools',
               },
             ],
           },
@@ -164,7 +164,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/physical-ai-book/physical-ai-book',
+                url: 'https://github.com/physical-ai-book/physical-ai-book',
               },
               {
                 label: 'Contributing',
