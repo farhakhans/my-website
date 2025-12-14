@@ -118,7 +118,7 @@ const config = {
          {
 
             
-    url: 'https://vercel.com/farhakhans-project',
+    url: 'https://vercel.com/my-website.vercel.app/',
     label: 'vercel',
     position: 'right',
   },
